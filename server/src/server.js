@@ -5,10 +5,8 @@ const dotenv = require("dotenv");
 const cookieParser = require('cookie-parser');
 
 const productRoute = require("./routes/product");
-// const categoryRoute = require("./routes/category");
+const categoryRoute = require("./routes/category");
 const authRoute = require("./routes/auth");
-// const employeeRoute = require('./routes/employee');
-// const image = require("./routes/image");
 const conecctToDB = require('./configs/db');
 
 
@@ -27,10 +25,8 @@ app.use(cors({
 
 //ROUTES
 app.use("/api/product", productRoute);
-// app.use("/api/category", categoryRoute);
+app.use("/api/category", categoryRoute);
 app.use("/api/auth", authRoute);
-// app.use("/api/admin",employeeRoute);
-// app.use("/api/image",image);
 app.listen(process.env.PORT || 8000, () => {
     console.log("Server is running...");
 });

@@ -1,40 +1,6 @@
 const Product = require('../models/Product');
 
 const productController = {
-    // getAllProducts: async (req, res) => {
-    //     try {
-    //         const { page, limit } = req.query;
-    //         const offset = (page - 1) * limit;
-
-
-    //         const keyWordSearch = req.query.search;
-
-    //         console.log(keyWordSearch);
-    //         const query = {};
-
-    //         if (keyWordSearch) {
-    //             query.$or = [
-    //                 { name: { $regex: new RegExp(keyWordSearch, 'i') } },
-    //                 { id: { $regex: new RegExp(keyWordSearch, 'i') } }
-    //             ];
-    //         }
-    //         const products = await Product.find().skip(offset).limit(limit).exec();
-    //         const totalProducts = await Product.countDocuments().exec()
-
-    //         res.status(200).json({
-    //             success: true,
-    //             message: 'Get all products successfully !',
-    //             totalPages: Math.ceil(totalProducts / limit),
-    //             data: products
-    //         });
-    //     } catch (err) {
-    //         res.status(500).json({
-    //             success: false,
-    //             message: err,
-    //             data: []
-    //         });
-    //     }
-    // },
     getAllProducts: async (req, res) => {
         try {
             const { page, limit } = req.query;
@@ -109,7 +75,99 @@ const productController = {
                 data: {}
             });
         }
-    }
+    },
+    // addProduct: async (req, res) => {
+    //     try {
+    //         const product = await Product.findOne({ name: req.body.name })
+
+    //         if(product){
+    //             return res.status(404).json({
+    //                 success: false,
+    //                 message: "product already exists"
+    //             })
+    //         }
+    
+    //         const newProduct = await new Product({
+    //             name: req.body.name,
+    //             id_category: req.body.id_category,
+    //             price: req.body.price,
+    //             image: req.body.image,
+    //             description: req.body.description
+    //         });
+    
+    //         const createProduct = await newProduct.save();
+    
+    //         return res.status(200).json({
+    //             success: true,
+    //             message: 'Add Product successfully !',
+    //             data: createProduct
+    //         });
+    //     } catch (error) {
+    //         return res.status(500).json({
+    //             success: false,
+    //             message: err,
+    //             data: {}
+    //         });
+    //     }
+    // },
+
+    // updateProduct: async (req, res) => {
+    //     try {
+    //         const product = await Product.findOne({ name: req.body.name })
+
+    //         if(product){
+    //             return res.status(404).json({
+    //                 success: false,
+    //                 message: "product already exists"
+    //             })
+    //         }
+    
+    //         const updateProduct = {
+    //             name: req.body.name,
+    //             id_category: req.body.id_category,
+    //             price: req.body.price,
+    //             image: req.body.image,
+    //             description: req.body.description
+    //         };
+    
+    //         const updatedProduct = await Product.findByIdAndUpdate(req.params.id, updateProduct, { new: true });
+    
+    //         if (!updatedProduct) {
+    //             return res.status(404).json({
+    //                 success: false,
+    //                 message: 'Product not found',
+    //                 data: {}
+    //             });
+    //         }
+    //         return res.status(200).json({
+    //             success: true,
+    //             message: 'Edit Product successfully !',
+    //             data: updatedProduct
+    //         });
+    //     } catch (error) {
+    //         return res.status(500).json({
+    //             success: false,
+    //             message: err,
+    //             data: {}
+    //         });
+    //     }
+    // },
+
+    // deleteProduct: async (req , res) => {
+    //     try {
+    //         await Product.deleteOne({_id: req.params.id})
+    //         res.status(200).json({
+    //             success: true,
+    //             message: 'Delete successfully!',
+    //         });
+    //     } catch (err) {
+    //         return res.status(500).json({
+    //             success: false,
+    //             message: err,
+    //             data: {}
+    //         });
+    //     }
+    // }
 }
 
 module.exports = productController;
