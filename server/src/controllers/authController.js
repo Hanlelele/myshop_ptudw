@@ -138,6 +138,41 @@ const authController = {
             message:"Logged out successfully!"
         });
     },
+
+    //UPDATE USER
+
+    updateUser: async (req, res) => {
+        try {    
+            const updateUser = {
+                fullname: req.body.fullname,
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password,
+            };
+    
+            const updatedUser = await Product.findByIdAndUpdate(req.params.id, updateUser, { new: true });
+    
+            if (!updatedUser) {
+                return res.status(404).json({
+                    success: false,
+                    message: 'Product not found',
+                    data: {}
+                });
+            }
+            return res.status(200).json({
+                success: true,
+                message: 'Update User successfully !',
+                data: updatedUser
+            });
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: err,
+                data: {}
+            });
+        }
+    },
+
 };
 
 module.exports = authController;

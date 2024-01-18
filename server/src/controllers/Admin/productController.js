@@ -37,16 +37,7 @@ const productController = {
     },
 
     updateProduct: async (req, res) => {
-        try {
-            const product = await Product.findOne({ name: req.body.name })
-
-            if(product){
-                return res.status(404).json({
-                    success: false,
-                    message: "product already exists"
-                })
-            }
-    
+        try {    
             const updateProduct = {
                 name: req.body.name,
                 id_category: req.body.id_category,
